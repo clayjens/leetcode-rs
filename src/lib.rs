@@ -20,4 +20,28 @@ impl Solution {
 
         false
     }
+
+    /// #242. Valid Anagram
+    ///
+    /// Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+    /// https://leetcode.com/problems/valid-anagram/
+    /// https://leetcode.com/problems/valid-anagram/submissions/898725382/
+    pub fn valid_anagram(s: &str, t: &str) -> bool {
+        if s.len() != t.len() {
+            return false;
+        }
+
+        let mut s_map: HashMap<char, i32> = HashMap::new();
+        let mut t_map: HashMap<char, i32> = HashMap::new();
+
+        for c in s.chars() {
+            *s_map.entry(c).or_insert(0) += 1;
+        }
+
+        for c in t.chars() {
+            *t_map.entry(c).or_insert(0) += 1;
+        }
+
+        s_map == t_map
+    }
 }
