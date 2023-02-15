@@ -38,22 +38,34 @@ impl Solution {
     /// Given a string s, return true if it is a palindrome, or false otherwise.
     ///
     /// https://leetcode.com/problems/valid-palindrome/
-    /// https://leetcode.com/problems/valid-palindrome/submissions/898743336/
+    /// https://leetcode.com/problems/valid-palindrome/submissions/898747870/
     pub fn valid_palindrome(s: String) -> bool {
-        let s: Vec<char> = s
-            .chars()
-            .filter_map(|s| {
-                if s.is_alphanumeric() {
-                    return Some(s.to_ascii_lowercase());
-                }
-                None
-            })
-            .collect();
+        let chars: Vec<char> = s.chars().filter(|s| s.is_alphanumeric()).collect();
 
-        let mut s_rev = s.clone();
-        s_rev.reverse();
+        if chars.len() == 0 {
+            return true;
+        }
 
-        s_rev == s
+        let mut left = 0;
+        let mut right = chars.len() - 1;
+
+        while left < right {
+            let left_c = chars[left].to_ascii_lowercase();
+            let right_c = chars[right].to_ascii_lowercase();
+
+            if !left_c.is_alphanumeric() || !right_c.is_alphanumeric() {
+                continue;
+            }
+
+            if left_c == right_c {
+                left += 1;
+                right -= 1;
+            } else {
+                return false;
+            }
+        }
+
+        true
     }
 
     /// #217. Contains Duplicate
