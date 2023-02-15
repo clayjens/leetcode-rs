@@ -1,4 +1,5 @@
-use std::cmp::Ordering;
+#![allow(unused_variables)]
+
 use std::collections::HashMap;
 
 #[derive(Debug)]
@@ -21,6 +22,16 @@ impl Solution {
         }
 
         vec![]
+    }
+
+    /// #49. Group Anagrams
+    /// Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+    ///
+    /// https://leetcode.com/problems/group-anagrams/
+    ///
+    pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
+        // TODO: https://github.com/neetcode-gh/leetcode/blob/main/rust/0049-group-anagrams.rs
+        unimplemented!()
     }
 
     /// #217. Contains Duplicate
