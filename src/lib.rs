@@ -1,9 +1,28 @@
+use std::cmp::Ordering;
 use std::collections::HashMap;
 
 #[derive(Debug)]
 pub struct Solution;
 
 impl Solution {
+    /// #1. Two Sum
+    /// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+    ///
+    /// https://leetcode.com/problems/two-sum/
+    /// https://leetcode.com/problems/two-sum/submissions/898734739/
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut compliment_map: HashMap<i32, usize> = HashMap::new();
+
+        for n in nums.iter().enumerate() {
+            match compliment_map.get(&n.1) {
+                Some(i) => return vec![*i as i32, n.0 as i32],
+                None => compliment_map.insert(target - n.1, n.0),
+            };
+        }
+
+        vec![]
+    }
+
     /// #217. Contains Duplicate
     ///
     /// Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
