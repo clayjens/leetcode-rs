@@ -34,6 +34,28 @@ impl Solution {
         unimplemented!()
     }
 
+    /// #125. Valid Palindrome
+    /// Given a string s, return true if it is a palindrome, or false otherwise.
+    ///
+    /// https://leetcode.com/problems/valid-palindrome/
+    /// https://leetcode.com/problems/valid-palindrome/submissions/898743336/
+    pub fn valid_palindrome(s: String) -> bool {
+        let s: Vec<char> = s
+            .chars()
+            .filter_map(|s| {
+                if s.is_alphanumeric() {
+                    return Some(s.to_ascii_lowercase());
+                }
+                None
+            })
+            .collect();
+
+        let mut s_rev = s.clone();
+        s_rev.reverse();
+
+        s_rev == s
+    }
+
     /// #217. Contains Duplicate
     ///
     /// Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
