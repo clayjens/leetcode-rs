@@ -115,4 +115,25 @@ impl Solution {
 
         s_map == t_map
     }
+
+    /// #485. Max Consecutive Ones
+    /// Given a binary array nums, return the maximum number of consecutive 1's in the array.
+    ///
+    /// https://leetcode.com/problems/max-consecutive-ones/
+    ///
+    pub fn max_consecutive_ones(nums: Vec<i32>) -> i32 {
+        let mut len = 0;
+        let mut curr = 0;
+
+        for n in nums {
+            match n {
+                1 => curr += 1,
+                _ => curr = 0,
+            }
+
+            len = std::cmp::max(len, curr);
+        }
+
+        len
+    }
 }
