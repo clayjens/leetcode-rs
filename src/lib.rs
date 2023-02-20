@@ -1,6 +1,7 @@
 #![allow(unused_variables)]
 
 use std::collections::HashMap;
+use std::cmp::Ordering;
 
 #[derive(Debug)]
 pub struct Solution;
@@ -135,5 +136,30 @@ impl Solution {
         }
 
         len
+    }
+    
+    /// #35. Search Insert Position
+    /// Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+    /// 
+    /// https://leetcode.com/problems/search-insert-position/
+    ///
+    pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
+        let mut left = 0;
+        let mut right = nums.len() - 1;
+
+        while left <= right {
+            let mid = left + (right - left) / 2;
+
+            match target.cmp(&nums[mid]) {
+                Ordering::Less => {
+                    if mid <= 0 { break; }
+                    right = mid - 1;
+                },
+                Ordering::Greater => left = mid + 1,
+                Ordering::Equal => return mid as i32
+            }
+        }
+
+        left as i32
     }
 }
